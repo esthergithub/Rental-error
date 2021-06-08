@@ -1,0 +1,53 @@
+<%= form_with(model: property) do |form| %>
+  <% if property.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+      <ul>
+        <% property.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :property %>
+    <%= form.text_field :property %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rent %>
+    <%= form.number_field :rent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :buildingage %>
+    <%= form.number_field :buildingage %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_area :remarks %>
+  </div>
+<% end %>
+  <div">
+      <% n = 0 %>
+      <%= form.fields_for :stations do |near| %>
+        <h2>nearest station<%= n += 1 %></h2>
+        <%= near.label :railway %><br>
+        <%= near.text_field :railway %><br>
+        <%= near.label :station name %><br>
+        <%= near.text_field :station name %><br>
+        <%= near.label :time %><br>
+        <%= near.text_field :time %><br>
+      <% end %>
+    </div>
+  　<%= form.submit %>
+<% end %>
+  <%= link_to "back", properties_path %>
